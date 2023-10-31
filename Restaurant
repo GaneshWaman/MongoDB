@@ -69,3 +69,15 @@ db.restaurent.find({borough:'Bronx', cuisine:{$in:['American','Chinese']}},{rest
 21. Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which prepared dish except 'American' and 'Chinees' or restaurant's name begins with letter 'Wil'.
   db.restaurent.find({cuisine:{$nin:['American','Chinese']},name:{$nin:[/^[Ww]il/]}},{restaurant_id:1,name:1,brough:1,cuisine:1,_id:0})
 
+22. Write a MongoDB query to find the restaurant Id, name, and grades for those restaurants which achieved a grade of "A" and scored 11 on an ISODate "2014-08-11T00:00:00Z" among many of survey dates
+db.restaurent.find({'grades.grade':'A','grades.score':{$eq:11},date:{ISODate:'2014-08-11'}},{restaurant_id:1,name:1,brough:1,cuisine:1,_id:0})
+
+25. Write a MongoDB query to arrange the name of the restaurants in ascending order along
+with all the columns.
+  db.restaurent.find().sort({name:1})
+
+26. Write a MongoDB query to arrange the name of the restaurants in descending order along with all the columns.
+  db.restaurent.find().sort({name:-1})
+
+27. Write a MongoDB query to arranged the name of the cuisine in ascending order and for that same cuisine borough should be in descending order.
+  db.restaurent.find().sort({name:-1},{cuisine:1})
