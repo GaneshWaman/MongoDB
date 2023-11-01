@@ -18,13 +18,13 @@ pages and published in 2009
 
 4. Find all the books containing word highlighting and depth in long description of the 
 book
-==>>
+==>>> db.book.find({longDescription:{$in:[/highlighting/,/depth/]}},{longDescription:1})
 
 5. Display all books published in 2009
-==>>
+==>>db.book.find({$expr:{$eq:[{$year:'$publishedDate'},2009]}})
 
 6. Find all books with pageCount is either 500 or 556 or 670
-==>>
+==>>db.book.find({pageCount:{$in:[500,556,670]}})
 
 7. Add 2 categories “kindle” and “hard bind” in all the books if its pageCount >200 and 
 < 500 or number of pages >500
