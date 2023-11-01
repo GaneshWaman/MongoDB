@@ -28,17 +28,17 @@ book
 
 7. Add 2 categories “kindle” and “hard bind” in all the books if its pageCount >200 and 
 < 500 or number of pages >500
-==>>
+==>>db.book.updateMany({$or:[{pageCount:{$gt:200,$lt:500}},{pagecount:{$gt:500}}]},{$push:{categories:{$each:['kindle','hard bind']}}})
 
 8. List all the books which has thumbnailUrl key
-==>>
+==>>db.book.find({thumbnailUrl:{$nin:[null],$exists:true}}).limit(5)
 
 9. Add key type with values [“fiction”,”moral stories”,”adventurous”] in all books 
 whose title starts with Fl and contains a some where in the name
-==>>
+==>>db.book.updateMany({title:/^Fl/},{$push:{typeWithValues:['friction','moral stories','adventurous']}},{upsert:true})
 
 10. Add a key comments :[{comment:” like the book” ,date:ISODate(“2019-09-01”)},
-==>>
+==>>db.book.updateMany({},{$push:{comments:[{comment:'like the book',date:ISODate('2019-09-01')}]}})
 
 11. Add new author “myauthor” at position 2 for all books whose title starts with h or m 
 and contains s at 2nd last position 
